@@ -1,7 +1,6 @@
 require 'pi_piper'
 require_relative 'motor'
 
-
 $pwm = PiPiper::Pwm.new pin: 18
 $in1 = PiPiper::Pin.new(:pin => 4, :direction => :out)
 $in2 = PiPiper::Pin.new(:pin =>17, :direction => :out)

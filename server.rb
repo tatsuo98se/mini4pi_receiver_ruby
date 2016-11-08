@@ -23,8 +23,6 @@ while true
   
   thread = Thread.start(s.accept) do |socket|
     id = socket.peeraddr
-    p "#{id} tryin to connect..."
-    #クライアント側からの接続まち
     p "#{id} connection success."
 
     while buf = socket.gets

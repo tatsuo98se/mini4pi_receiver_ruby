@@ -2,7 +2,7 @@
 
 def createMotor(mode=:production)
     if(mode == :production) then
-#        require_relative 'real_motor'
+        require_relative 'real_motor'
         return RealMotor.new
     else
         return StubMotor.new
@@ -12,10 +12,12 @@ end
 
 class Motor
 
-    $lastUpdate = Time.now
+    def initialize
+        @last_update = Time.now
+    end
 
     def driveMotor(x, y)
-        if(x==0 && y==0 && (Time.now - $lastUpdate) > 0.5) then
+        if(x==0 && y==0 && (Time.now - @last_update) > 0.5) then
             set_motor_params(0.0, false, false);
             return
         end
@@ -31,7 +33,7 @@ class Motor
     end
 
     def update_last_operation_date
-        $lastUpdate = Time.now
+        @last_update = Time.now
     end
 
     def set_motor_params(pwm, in1, in2)
