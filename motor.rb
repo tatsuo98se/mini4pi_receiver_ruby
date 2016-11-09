@@ -20,18 +20,19 @@ class Motor
     end
 
     def driveMotor(x, y)
-        if(x==0 && y==0 && (Time.now - @last_update) > 0.5) then
-            set_motor_params(0.0, false, false);
-            return
+        if((x==0 && y==0) || ((Time.now - @last_update) > 0.5)) then
+            set_motor_params(0.0, false, false)
+            set_steering_params(0)
+	    return
         end
 
         p "drive motor #{x}, #{y}"
         if(y > 0) then
-            set_motor_params(y.abs.to_f/100.0, true, false);
+            set_motor_params(y.abs.to_f/100.0, true, false)
         else
-            set_motor_params(y.abs.to_f/100.0, false, true);
+            set_motor_params(y.abs.to_f/100.0, false, true)
         end
-        set_steering_params(x)
+        set_steering_params(x/100)
 
     end
 
