@@ -27,12 +27,20 @@ class Motor
         end
 
         p "drive motor #{x}, #{y}"
+        pwm = [y.abs.to_f/100.0, 1].min
         if(y > 0) then
-            set_motor_params(y.abs.to_f/100.0, true, false)
+            set_motor_params(pwm, true, false)
         else
-            set_motor_params(y.abs.to_f/100.0, false, true)
+            set_motor_params(pwm, false, true)
         end
-        set_steering_params(x/100)
+
+        steering = x/100
+        if(x > 0) then
+            steering = [steering, 1].min
+        else
+            steering = [steering, -1].max 
+        end
+        set_steering_params(steering)
 
     end
 
