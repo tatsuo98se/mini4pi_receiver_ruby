@@ -34,7 +34,7 @@ class Motor
             set_motor_params(pwm, false, true)
         end
 
-        steering = x/100
+        steering = x/100.0
         if(x > 0) then
             steering = [steering, 1].min
         else
