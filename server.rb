@@ -6,7 +6,7 @@ xdirection = 0
 ydirection = 0
 
 #motor
-motor = createMotor(4, 17, 18, 23, {mode: :test})
+motor = createMotor(4, 17, 18, 12, {mode: :production})
 
 #Timer
 timers = Timers::Group.new

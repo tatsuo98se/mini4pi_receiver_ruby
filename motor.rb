@@ -16,7 +16,7 @@ class Motor
         @pin_motor_in2 = pin_motor_in2
         @pin_motor_pwm = pin_motor_pwm
         @pin_servo_pwm = pin_servo_pwm
-        @last_update = Time.now
+        update_last_operation_date
 
         @options = {
             servo_clock: 19.2 * 1_000_000 ,
@@ -99,7 +99,7 @@ def createMotor(pin_motor_in1,
                              pin_motor_in2,
                              pin_motor_pwm,
                              pin_servo_pwm,
-                   options)
+                             options)
     else
         return StubMotor.new(pin_motor_in1, 
                              pin_motor_in2,

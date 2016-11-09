@@ -19,7 +19,7 @@ class RealMotor < Motor
               options)
 
         require 'pi_piper'
-        @stearing = PiPiper::Pwm.new( pin: @pin_servo_pwm, mode: :markspace, clock: @option[:clock])
+        @stearing = PiPiper::Pwm.new( pin: @pin_servo_pwm, mode: :markspace, clock: @options[:servo_clock])
         @pwm = PiPiper::Pwm.new(pin: @pin_motor_pwm)
         @in1 = PiPiper::Pin.new(pin: @pin_motor_in1, direction: :out)
         @in2 = PiPiper::Pin.new(pin: @pin_motor_in2, direction: :out)
