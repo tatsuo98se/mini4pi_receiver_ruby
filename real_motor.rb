@@ -2,9 +2,15 @@ require_relative 'motor'
 
 class RealMotor < Motor
 
-    MAX_LEFT_VALUE = 0.1
-    MAX_RIGHT_VALUE = 0.001
-    CENTER = 0.23
+    MAX_LEFT_VALUE = 0.036
+    MAX_RIGHT_VALUE = 0.045
+    CENTER = 0.0408
+    CLOCK = 370
+
+    attr_reader(stearing, 
+                pwm,
+                in1,
+                in2)
 
     def initialize(pin_motor_in1, 
                    pin_motor_in2,
@@ -19,7 +25,7 @@ class RealMotor < Motor
               options)
 
         require 'pi_piper'
-        @stearing = PiPiper::Pwm.new( pin: @pin_servo_pwm, mode: :markspace, clock: @options[:servo_clock])
+        @stearing = PiPiper::Pwm.new( pin: @pin_servo_pwm, mode: :markspace, clock: CLOCK)
         @pwm = PiPiper::Pwm.new(pin: @pin_motor_pwm)
         @in1 = PiPiper::Pin.new(pin: @pin_motor_in1, direction: :out)
         @in2 = PiPiper::Pin.new(pin: @pin_motor_in2, direction: :out)
@@ -33,7 +39,17 @@ class RealMotor < Motor
     end
 
     def set_servo_param(steering_in_percent)
-        super(steering_in_percent)
+        super(steering_in_percent) 
+        if(stearing_in_percent > 0) then 
+            @stearing.on
+            @stearing.value = CENTER + (MAX_RIGHT_VALUE - CENTER) * steering_in_percent
+        elsif(stearing_in_percent < 0) then 
+            @stearing.on
+            @stearing.value = CENTER + (CENTER - MAX_LEFT_VALUE) * steering_in_percent
+        else
+            @stearing.off
+        end
+
     end
 end
 

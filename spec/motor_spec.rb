@@ -8,7 +8,6 @@ describe 'when initialize with parameters' do
         expect(target.pin_motor_pwm).to eq 3
         expect(target.pin_servo_pwm).to eq 4
         expect(target.options[:mode]).to eq :production
-        expect(target.options[:servo_clock]).to eq 19.2 * 1_000_000
     end
 end
 

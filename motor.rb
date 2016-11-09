@@ -17,11 +17,6 @@ class Motor
         @pin_motor_pwm = pin_motor_pwm
         @pin_servo_pwm = pin_servo_pwm
         update_last_operation_date
-
-        @options = {
-            servo_clock: 19.2 * 1_000_000 ,
-         }.merge(options)
-
     end
 
     def driveMotor(x, y)
