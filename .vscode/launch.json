@@ -14,7 +14,8 @@
             "request": "launch",
             "cwd": "${workspaceRoot}",
             "program": "${workspaceRoot}/server.rb"
-        },        {
+        }, 
+        {
             "name": "Listen for rdebug-ide",
             "type": "Ruby",
             "request": "attach",
@@ -24,21 +25,11 @@
             "remoteWorkspaceRoot": "${workspaceRoot}"
         },
         {
-            "name": "Rails server",
-            "type": "Ruby",
-            "request": "launch",
-            "cwd": "${workspaceRoot}",
-            "program": "${workspaceRoot}/bin/rails",
-            "args": [
-                "server"
-            ]
-        },
-        {
             "name": "RSpec - all",
             "type": "Ruby",
             "request": "launch",
             "cwd": "${workspaceRoot}",
-            "program": "${workspaceRoot}/bin/rspec",
+            "program": "/usr/local/bin/rspec",
             "args": [
                 "-I",
                 "${workspaceRoot}"
@@ -49,19 +40,12 @@
             "type": "Ruby",
             "request": "launch",
             "cwd": "${workspaceRoot}",
-            "program": "${workspaceRoot}/bin/rspec",
+            "program": "/usr/local/bin/rspec",
             "args": [
                 "-I",
                 "${workspaceRoot}",
                 "${file}"
             ]
-        },
-        {
-            "name": "Cucumber",
-            "type": "Ruby",
-            "request": "launch",
-            "cwd": "${workspaceRoot}",
-            "program": "${workspaceRoot}/bin/cucumber"
         }
     ]
 }
