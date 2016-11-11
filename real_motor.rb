@@ -42,10 +42,10 @@ class RealMotor < Motor
         super(steering_in_percent) 
         if(steering_in_percent > 0) then
             steering_in_percent = [steering_in_percent, 1].min
-            @stearing.value = CENTER + (MAX_RIGHT_VALUE - CENTER) * steering_in_percent
+            @stearing.value = CENTER - (CENTER - MAX_LEFT_VALUE) * steering_in_percent.abs
         elsif(steering_in_percent < 0) then 
             steering_in_percent = [steering_in_percent, -1].max 
-            @stearing.value = CENTER + (CENTER - MAX_LEFT_VALUE) * steering_in_percent
+            @stearing.value = CENTER + (MAX_RIGHT_VALUE - CENTER) * steering_in_percent.abs
         else
             @stearing.value = CENTER
         end

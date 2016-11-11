@@ -29,9 +29,9 @@ class Motor
         p "drive motor #{x}, #{y}"
         pwm = [y.abs.to_f/100.0, 1].min
         if(y > 0) then
-            set_motor_params(pwm, true, false)
-        else
             set_motor_params(pwm, false, true)
+        else
+            set_motor_params(pwm, true, false)
         end
 
         steering = x/100.0
