@@ -23,7 +23,11 @@ class Motor
         if((x==0 && y==0) || ((Time.now - @last_update) > 0.5)) then
             set_motor_params(0.0, false, false)
             set_steering_params(0)
-	    return
+	        return
+        end
+        if((Time.now - @last_update) > 2.0) then
+            sleep
+            return;
         end
 
         p "drive motor #{x}, #{y}"
@@ -59,6 +63,10 @@ class Motor
     # max steering degree is depend on implementation of subclass.
     def set_steering_params(steering_in_percent)
         p "set_steering_params #{steering_in_percent}"
+    end
+
+    def sleep
+        p "sleep"
     end
 end
 

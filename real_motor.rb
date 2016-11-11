@@ -35,11 +35,13 @@ class RealMotor < Motor
         super(pwm, in1, in2)
         in1 ? @in1.on : @in1.off
         in2 ? @in2.on : @in2.off
+        @pwm.on
         @pwm.value = pwm
     end
 
     def set_steering_params(steering_in_percent)
         super(steering_in_percent) 
+        @stearing.on
         if(steering_in_percent > 0) then
             steering_in_percent = [steering_in_percent, 1].min
             @stearing.value = CENTER - (CENTER - MAX_LEFT_VALUE) * steering_in_percent.abs
@@ -50,6 +52,13 @@ class RealMotor < Motor
             @stearing.value = CENTER
         end
 
+    end
+
+    def sleep
+        @pwm.off
+        @stearing.off
+        @in1.off
+        @in2.off
     end
 end
 
