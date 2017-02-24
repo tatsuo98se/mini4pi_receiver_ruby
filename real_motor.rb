@@ -2,9 +2,9 @@ require_relative 'motor'
 
 class RealMotor < Motor
 
-    MAX_LEFT_VALUE = 0.036
+    MAX_LEFT_VALUE = 0.035
     MAX_RIGHT_VALUE = 0.045
-    CENTER = 0.0408
+    CENTER = 0.040
     CLOCK = 385
 
     attr_reader(:stearing, 
@@ -25,7 +25,7 @@ class RealMotor < Motor
               options)
 
         require 'pi_piper'
-        @pwm = PiPiper::Pwm.new(pin: @pin_motor_pwm)
+        @pwm = PiPiper::Pwm.new(pin: @pin_motor_pwm, clock: 100)
         @stearing = PiPiper::Pwm.new( pin: @pin_servo_pwm, mode: :markspace, clock: CLOCK)
         @in1 = PiPiper::Pin.new(pin: @pin_motor_in1, direction: :out)
         @in2 = PiPiper::Pin.new(pin: @pin_motor_in2, direction: :out)
@@ -55,6 +55,7 @@ class RealMotor < Motor
     end
 
     def sleep
+        super
         @pwm.off
         @stearing.off
         @in1.off
